@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'aoc_2021'
+
+Aoc2021::CLI.start(ARGV)
