@@ -8,18 +8,51 @@ module Aoc2021
     end
 
     def run
-      # ---
+      values['forward'].sum * (values['down'].sum - values['up'].sum)
+    end
+
+    def values
+      @values ||= begin
+        hash = {}
+        @input.each { |line| (hash[line.split[0].strip] ||= []) << line.split[1].strip.to_i }
+        hash
+      end
     end
   end
 
   #----
-  class Day02Part2
+  class Day02Part2 < Day02Part1
     def initialize(input_file)
-      @input = File.read(input_file).each_line(chomp: true).to_a
+      super
+      @aim                 = 0
+      @depth               = 0
+      @horizontal_position = 0
     end
 
     def run
-      # ---
+      execute_commands
+      @horizontal_position * @depth
+    end
+
+    def execute_commands
+      @input.each do |line|
+        command = line.split[0].strip
+        amount  = line.split[1].strip.to_i
+        if command.eql?('forward')
+          move_forward(amount)
+        else
+          adjust_aim(command.eql?('up') ? -amount : amount)
+        end
+      end
+    end
+
+    def move_forward(amount)
+      @horizontal_position += amount
+      @depth               += amount * @aim
+    end
+
+    def adjust_aim(amount)
+      @aim += amount
     end
   end
 
