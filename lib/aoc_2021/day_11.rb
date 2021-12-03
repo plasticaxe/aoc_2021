@@ -13,11 +13,7 @@ module Aoc2021
   end
 
   #----
-  class Day11Part2
-    def initialize(input_file)
-      @input = File.read(input_file).each_line(chomp: true).to_a
-    end
-
+  class Day11Part2 < Day11Part1
     def run
       # ---
     end
@@ -26,8 +22,8 @@ module Aoc2021
   #-----
   module Day11
     def self.default_input_file
-      # File.join(Aoc2021::INPUT_FILES, 'day_11_example.txt')
-      File.join(Aoc2021::INPUT_FILES, 'day_11.txt')
+      File.join(Aoc2021::INPUT_FILES, 'day_11_example.txt')
+      # File.join(Aoc2021::INPUT_FILES, 'day_11.txt')
     end
 
     def self.part_one(input_file = default_input_file)
