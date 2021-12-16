@@ -6,6 +6,7 @@ module Aoc2021
     def initialize(input_file)
       @input           = File.read(input_file).each_line(chomp: true).to_a.freeze
       @initial_polymer = @input[0].chars.freeze
+      @rule_counter    = {}
     end
 
     def run(times)
@@ -20,23 +21,31 @@ module Aoc2021
 
     def run_insertion
       hash = {}
-      polymer.dup.each_pair { |k, v| update_hash(hash, k, v) }
+      polymer.each_pair do |k, v|
+        update_polymer(hash, k, v)
+        update_rule_counter(k, v)
+      end
       polymer.replace(hash)
     end
 
-    def update_hash(hash, key, value)
+    def update_polymer(hash, key, value)
       [key.chars[0] + rules[key], rules[key] + key.chars[1]].each do |k|
         hash[k] ||= 0
         hash[k] += value
       end
     end
 
+    def update_rule_counter(key, value)
+      @rule_counter[rules[key]] ||= 0
+      @rule_counter[rules[key]] += value
+    end
+
     def counted_elements
       hash = {}
       @initial_polymer.uniq.each { |c| hash[c] = @initial_polymer.count(c) }
-      polymer.dup.each_pair do |k, v|
-        hash[k.chars[0]] ||= 0
-        hash[k.chars[0]] += v
+      @rule_counter.each_pair do |k, v|
+        hash[k] ||= 0
+        hash[k] += v
       end
       hash
     end

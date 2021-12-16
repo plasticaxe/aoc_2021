@@ -20,10 +20,10 @@ RSpec.describe Aoc2021 do
       end
     end
 
-    # context 'part_two' do
-    #   it 'should have the right answer' do
-    #     expect(Aoc2021::Day14.part_two).to be(000)
-    #   end
-    # end
+    context 'part_two' do
+      it 'should have the right answer' do
+        expect(Aoc2021::Day14.part_two).to be(12_271_437_788_530)
+      end
+    end
   end
 end
