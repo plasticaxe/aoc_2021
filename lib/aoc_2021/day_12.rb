@@ -52,7 +52,7 @@ module Aoc2021
 
     def run
       all_paths = Set.new
-      caves.each_key.select { |k| k.match?(/^[a-z]{2}$/) }.each do |small_cave|
+      caves.each_key.grep(/^[a-z]{2}$/).each do |small_cave|
         @double_cave = small_cave
         parse_paths(next_cave(['start'])).each { |p| all_paths << p }
       end

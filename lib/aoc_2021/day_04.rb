@@ -53,8 +53,14 @@ module Aoc2021
 
     def won_already?(grid)
       (@won_already ||= {})[grid] ||= begin
-        (grid + grid.transpose).each { |l| return true if l.sum.zero? }
-        false
+        won = false
+        (grid + grid.transpose).each do |l|
+          if l.sum.zero?
+            won = true
+            break
+          end
+        end
+        won
       end
     end
   end

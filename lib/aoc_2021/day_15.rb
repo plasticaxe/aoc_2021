@@ -75,7 +75,7 @@ module Aoc2021
       end
 
       def connect_graph(source, target, weight)
-        !@graph.key?(source) ? @graph[source] = { target => weight } : @graph[source][target] = weight
+        @graph.key?(source) ? @graph[source][target] = weight : @graph[source] = { target => weight }
         @nodes << source
       end
 
@@ -130,7 +130,7 @@ module Aoc2021
         @nodes.each do |dest|
           @path = []
           find_path(dest)
-          path = @distance[dest] != INFINITY ? @distance[dest] : 'no path'
+          path = @distance[dest] == INFINITY ? 'no path' : @distance[dest]
         end
         path
       end

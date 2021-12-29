@@ -66,7 +66,7 @@ module Aoc2021
     def rules
       @rules ||= begin
         hash = {}
-        @input.select { |l| l.match?('->') }.each { |r| hash[r.split[0]] = r.split[-1] }
+        @input.grep(/->/).each { |r| hash[r.split[0]] = r.split[-1] }
         hash
       end
     end

@@ -23,13 +23,13 @@ module Aoc2021
     end
 
     def dots
-      @dots ||= @input.select { |l| l.match?(/\d,\d/) }.map do |d|
+      @dots ||= @input.grep(/\d,\d/).map do |d|
         { x: d.split(',')[0].to_i, y: d.split(',')[1].to_i }
       end.to_set
     end
 
     def folds
-      @folds ||= @input.select { |l| l.match?(/^fold/) }.map do |f|
+      @folds ||= @input.grep(/^fold/).map do |f|
         { axis: f.split[-1].split('=')[0], line: f.split[-1].split('=')[1].to_i }
       end
     end
