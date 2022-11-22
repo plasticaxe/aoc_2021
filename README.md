@@ -1,6 +1,6 @@
 # Aoc2021
 
-Solutions for Advent of Code 2021 as a Ruby Gem
+Solutions for https://adventofcode.com/2021 as a Ruby Gem
 
 ## Installation
 
